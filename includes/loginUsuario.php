@@ -20,7 +20,7 @@ if (!empty($_POST)) {
 
         if ($query->rowCount() > 0) {
             if (password_verify($password, $result['password'])) {
-                $_SESSION['active'] = true;
+                $_SESSION['activeP'] = true;
                 $_SESSION['usuario_id'] = $result['usuario_id'];
                 $_SESSION['nombre'] = $result['nombre'];
                 $_SESSION['apellido'] = $result['apellido'];
