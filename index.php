@@ -1,3 +1,12 @@
+<?php
+    session_start();
+    if(!empty($_SESSION['active'])){
+        header('location: administrador/');
+    } else if(!empty($_SESSION['activeP'])){
+        header('loaction: usuario/');
+    }
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,12 +20,11 @@
     <header class="main-header">
         <div class="main-cont">
             <div class="desc-header">
-                <img src="images/MUNICIPALIDAD_SAN_MIGUEL.jpg" alt="image school">
-                <!-- <p>School</p> -->
+                <img src="images/MUNICIPALIDAD_SAN_MIGUEL.jpg" alt="Logo Municipalidad">
             </div>
         </div>   
         <div class="cont-header">
-            <h1>Bienvenido(a)</h1>
+            <h1 class="text-center">Bienvenido(a)</h1>
             <div class="form">
                 <ul class="nav nav-tabs" id="myTab" role="tablist">
                     <li class="nav-item" role="presentation">
@@ -27,26 +35,34 @@
                     </li>
                 </ul> 
                 <div class="tab-content" id="myTabContent">
+                    <!-- Formulario Administrador -->
                     <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
-                        <form action="" onsubmit="return validar()">
-                            <label for="usuario">Usuario</label>
-                            <input type="text" name="usuario" id="usuario" placeholder="Nombre de usuario">
-                            <label for="password">Contraseña</label>
-                            <input type="password" name="pass" id="pass" placeholder="Contraseña">
+                        <form id="adminForm">
+                            <div class="mb-3">
+                                <label for="adminIdentificador" class="form-label">Identificador</label>
+                                <input type="text" class="form-control" name="identificador" id="adminIdentificador" placeholder="Nombre de usuario" required autocomplete="username">
+                            </div>
+                            <div class="mb-3">
+                                <label for="adminPassword" class="form-label">Contraseña</label>
+                                <input type="password" class="form-control" name="password" id="adminPassword" placeholder="Contraseña" autocomplete="current-password" required autocomplete="current-password">
+                            </div>
                             <div id="messageAdmin"></div>
-                            <div class="alert"><?php echo (isset($alert) ? $alert : '' ); ?></div>
-                            <button id="loginAdmin" type="button">INICIAR SESION</button>
+                            <button id="loginAdmin" type="button" class="btn btn-primary w-100">Iniciar Sesión</button>
                         </form>
                     </div>
+                    <!-- Formulario Usuario -->
                     <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
-                        <form action="" onsubmit="return validar()">
-                            <label for="usuario">Usuario</label>
-                            <input type="text" name="usuario" id="usuario" placeholder="Nombre de usuario">
-                            <label for="password">Contraseña</label>
-                            <input type="password" name="pass" id="pass" placeholder="Contraseña">
+                        <form id="userForm">
+                            <div class="mb-3">
+                                <label for="userIdentificador" class="form-label">Identificador</label>
+                                <input type="text" class="form-control" name="identificador" id="userIdentificador" placeholder="Nombre de usuario" required autocomplete="username">
+                            </div>
+                            <div class="mb-3">
+                                <label for="userPassword" class="form-label">Contraseña</label>
+                                <input type="password" class="form-control" name="password" id="userPassword" placeholder="Contraseña" autocomplete="current-password" required autocomplete="current-password">
+                            </div>
                             <div id="messageUsuario"></div>
-                            <div class="alert"><?php echo (isset($alert) ? $alert : '' ); ?></div>
-                            <button id="loginUsuario" type="button">INICIAR SESION</button>
+                            <button id="loginUsuario" type="button" class="btn btn-primary w-100">Iniciar Sesión</button>
                         </form>
                     </div>
                 </div>
@@ -54,7 +70,7 @@
         </div>
     </header>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
-    <script scr="js/jquery-3.7.0.min.js"></script>
-    <script scr="js/login.js"></script>
+    <script src="js/jquery-3.7.0.min.js"></script>
+    <script src="js/login.js"></script>
 </body>
 </html>
