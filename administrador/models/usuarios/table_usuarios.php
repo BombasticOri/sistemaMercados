@@ -4,7 +4,7 @@ require_once '../../../includes/conexion.php';
 $sql = 'SELECT u.*, r.nombre_rol 
         FROM usuarios AS u 
         INNER JOIN roles AS r 
-        ON u.rol_id = r.rol_id 
+        ON u.rol_id = r.rol_id
         WHERE u.estado != 0';
 $query = $pdo->prepare($sql);
 $query->execute();

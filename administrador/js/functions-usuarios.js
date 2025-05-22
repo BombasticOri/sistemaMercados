@@ -70,3 +70,28 @@ document.addEventListener('DOMContentLoaded',function(){
 function openModal() {
     $('#modalUsuario').modal('show');
 }
+
+function editarUsuario(idusuario){
+    var request  = (window.XMLHttpRequest) ? new XMLHttpRequest : new ActiveXObject('Microsoft.XMLHTTP');
+    var url = './models/usuarios/edit-usuarios.php?idusuario=' + idusuario;
+    request.open('GET', url, true);
+    request.send();
+    request.onreadystatechange = function(){
+        if(request.readyState == 4 && request.status == 200){
+            var data = JSON.parse(request.responseText);
+            if(data.status){
+                document.querySelector('#idusuario').value = data.data.usuario_id;
+                document.querySelector('#nombre').value = data.data.nombre;
+                document.querySelector('#apellido').value = data.data.apellido;
+                document.querySelector('#email').value = data.data.email;
+                document.querySelector('#identificador').value = data.data.identificador;
+                document.querySelector('#password').value = data.data.password;
+                document.querySelector('#listRol').value = data.data.rol_id;
+                document.querySelector('#listEstado').value = data.data.estado;
+                $('#modalUsuario').modal('show');
+            } else {
+                swal("Usuario", data.msg, "error");
+            }
+        }
+    }
+}
