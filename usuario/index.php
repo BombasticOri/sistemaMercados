@@ -2,7 +2,7 @@
 require_once 'includes/header.php';
 ?>
 
-    <main class="app-content">
+<main class="app-content">
       <div class="app-title">
         <div>
           <h1><i class="bi bi-speedometer"></i> Blank Page</h1>

@@ -1,51 +1,50 @@
-$(document).ready(function(){
-    $('#loginAdmin').on('click',function(){
+$(document).ready(function () {
+    $('#loginAdmin').on('click', function () {
         loginAdmin();
     });
-    $('#loginUsuario').on('click',function(){
+    $('#loginUsuario').on('click', function () {
         loginUsuario();
     });
 });
 
-function loginAdmin(){
-    var login = $('#usuario').val();
-    var pass = $('#pass').val();
+function loginAdmin() {
+    var identificador = $('#adminIdentificador').val();
+    var password = $('#adminPassword').val();
 
     $.ajax({
         url: './includes/loginAdmin.php',
         method: 'POST',
-        data:{
-            login:login,
-            pass:pass
+        data: {
+            identificador: identificador,
+            password: password
         },
-        succes: function(data){
-            $('messageAdmin').html(data);
+        success: function (data) {
+            $('#messageAdmin').html(data);
 
-            if(data.indexOf('Redirecting') >-0){
-                window.location - 'administrador/';
+            if (data.indexOf('Redirigiendo') > -1) {
+                window.location = 'administrador/';
             }
         }
-    })
+    });
 }
 
-function loginUsuario(){
-    var login = $('#usuario').val();
-    var pass = $('#pass').val();
+function loginUsuario() {
+    var identificador = $('#userIdentificador').val();
+    var password = $('#userPassword').val();
 
     $.ajax({
         url: './includes/loginUsuario.php',
         method: 'POST',
-        data:{
-            login:login,
-            pass:pass
+        data: {
+            identificador: identificador,
+            password: password
         },
-        succes: function(data){
-            $('messageUsuario').html(data);
+        success: function (data) {
+            $('#messageUsuario').html(data);
 
-            if(data.indexOf('Redirecting') >-0){
-                window.location - 'usuario/';
+            if (data.indexOf('Redirigiendo') > -1) {
+                window.location = 'usuario/';
             }
         }
-    })
+    });
 }
-
